@@ -40,6 +40,10 @@ module GoogleApi
           super(@@session.api.management.goals.list, parameters)
         end
 
+        def self.get!(parameters = nil)
+          super(@@session.api.management.goals.list, parameters)
+        end
+
         def set(goal)
           @account_id     = goal['accountId']
           @webproperty_id = goal['webPropertyId']

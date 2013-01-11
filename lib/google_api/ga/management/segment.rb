@@ -28,7 +28,11 @@ module GoogleApi
         def self.get(parameters = nil)
           super(@@session.api.management.segments.list, parameters)
         end
-        
+
+        def self.get!(parameters = nil)
+          super(@@session.api.management.segments.list, parameters)
+        end
+
         def set(segment)
           @segment_id = segment['segmentId']
           @definition = segment['definition']

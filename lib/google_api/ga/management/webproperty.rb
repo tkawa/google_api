@@ -40,6 +40,10 @@ module GoogleApi
           super(@@session.api.management.webproperties.list, parameters)
         end
 
+        def self.get!(parameters = nil)
+          super(@@session.api.management.webproperties.list, parameters)
+        end
+
         def set(webproperty)
           @account_id  = webproperty['accountId']
           @website_url = webproperty['websiteUrl']

@@ -31,7 +31,11 @@ module GoogleApi
         def self.get(parameters = nil)
           super(@@session.api.management.accounts.list, parameters)
         end
-      
+
+        def self.get!(parameters = nil)
+          super(@@session.api.management.accounts.list, parameters)
+        end
+
     end
   end
 end

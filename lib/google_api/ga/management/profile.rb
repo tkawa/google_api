@@ -42,6 +42,10 @@ module GoogleApi
           super(@@session.api.management.profiles.list, parameters)
         end
 
+        def self.get!(parameters = nil)
+          super(@@session.api.management.profiles.list, parameters)
+        end
+
         def set(profile)
           @account_id     = profile['accountId']
           @webproperty_id = profile['webPropertyId']

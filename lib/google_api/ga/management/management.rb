@@ -24,6 +24,15 @@ module GoogleApi
           )["items"]
         end
 
+        def self.get!(api_method, parameters = nil)
+          JSON.parse(
+            @@session.client.execute!(api_method: api_method,
+                                      parameters: parameters).body
+          )["items"]
+        rescue Google::APIClient::TransmissionError => e
+          raise GoogleApi::GaError, e.message
+        end
+
         def set(values)
           @id      = values['id']
           @name    = values['name']
