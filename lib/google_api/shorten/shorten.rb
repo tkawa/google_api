@@ -1,7 +1,9 @@
 module GoogleApi
   module Shorten
 
-    CONFIGURATION = {}
+    CONFIGURATION = {
+      cache: GoogleApi::Cache.new
+    }
 
     URLSHORTENER_URI = 'https://www.googleapis.com/urlshortener/v1/url'
 
@@ -13,6 +15,9 @@ module GoogleApi
     autoload :Insert, 'google_api/shorten/url/insert'
     autoload :List,   'google_api/shorten/url/list'
     autoload :Get,    'google_api/shorten/url/get'
+
+    # Mapper
+    autoload :InsertMapper, 'google_api/shorten/url/insert_mapper'
 
     def self.insert(url)
       Insert.new(url)

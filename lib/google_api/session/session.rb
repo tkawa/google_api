@@ -148,6 +148,27 @@ module GoogleApi
       return to_return
     end
     
+    def already_logged_in(option = {})
+      app_info = option.slice(:application_name, :application_version)
+      @client = Google::APIClient.new(app_info)
+      @client.authorization.client_id     = option[:client_id] || c('client_id')
+      @client.authorization.client_secret = option[:client_secret] || c('client_secret')
+      @client.authorization.access_token  = option[:access_token]
+      @client.authorization.refresh_token = option[:refresh_token]
+      @api = discovered_api(@name_api, @version_api)
+    end
+
+    def discovered_api(name, version)
+      key = "#{name}/#{version}"
+      if _cache.exists?(key)
+        _cache.read(key)
+      else
+        api = @client.discovered_api(name, version)
+        _cache.write(key, api, 30) # 30 min
+        api
+      end
+    end
+
     # Check session
     def check_session
       if @api.nil? || @client.nil?
@@ -188,6 +209,10 @@ module GoogleApi
 
       def _config
         GoogleApi.config
+      end
+
+      def _cache
+        c('cache')
       end
 
       def c(key)

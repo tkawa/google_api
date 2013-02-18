@@ -12,6 +12,7 @@ module GoogleApi
 
   autoload :Ga,      'google_api/ga/ga'           # Google analytics
   autoload :Shorten, 'google_api/shorten/shorten' # Google urlshortener
+  autoload :ShortenMapper, 'google_api/shorten/shorten_mapper' # Google urlshortener
 
   class SessionError  < StandardError; end
   class GaError       < StandardError; end

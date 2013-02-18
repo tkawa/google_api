@@ -22,6 +22,12 @@ module GoogleApi
     autoload :FiltersDsl, 'google_api/ga/data/filters_dsl'
     autoload :SegmentDsl, 'google_api/ga/data/segment_dsl'
 
+    # Finder
+    autoload :ManagementFinder,  'google_api/ga/management/management_finder'
+    autoload :ProfileFinder,     'google_api/ga/management/profile_finder'
+    autoload :GoalFinder,        'google_api/ga/management/goal_finder'
+    autoload :DataFinder,        'google_api/ga/data_finder'
+
     @@id = 0
 
     def self.id(id=nil)
